@@ -1,17 +1,22 @@
 .chapter-index {
-  padding: 50px 400px;
+  margin: 50px 400px;
+  table {
+    width: 100%;
+    font-size: 20px;
+  }
 }
 
 .chapter-edit {
-  padding: 50px 400px;
+  margin: 50px 400px;
 }
 
 .chapter-view {
-  padding: 50px 200px;
+  margin: 50px 200px;
   font-family: timesnewroman;
   .title {
     text-align: center;
     font-size: 20px;
+    margin-bottom: 10px;
     .book-name {
       color: red;
       font-weight: bold;
@@ -19,22 +24,57 @@
     .chapter-name {
       color: #b35900;
     }
+    #chapter_select {
+      max-width: 30%;
+      margin: 0 auto;
+      font-size: 20px;
+    }
+    .break {
+      margin: 5px;
+    }
   }
   .content {
     white-space: pre-line;
     font-size: 25px;
   }
+  .control-button {
+    .scroll-btn {
+      position: fixed;
+      right: 80px;
+      &.top{
+        bottom: 120px;
+      }
+      &.bottom {
+        bottom: 60px;
+      }
+    }
+  }
 }
 @media (max-width: 767px) {
-  .chapter-edit {
-    padding: 10px 30px;
+  .chapter-edit, .chapter-index {
+    margin: 10px 30px;
   }
 
   .chapter-view {
-    padding: 10px 30px;
-
+    margin: 10px 30px;
+    .title {
+      #chapter_select {
+        max-width: 100%;
+      }
+    }
     .content {
       text-align: justify;
+    }
+    .control-button {
+      .scroll-btn {
+        right: 0;
+        &.top{
+          bottom: 60px;
+        }
+        &.bottom {
+          bottom: 20px;
+        }
+      }
     }
   }
 }

@@ -9,7 +9,9 @@
       - @books.each do |book|
         tr
           td = link_to book.name, book_chapters_path(book.path)
-          td = link_to "edit", edit_book_path(book.path)
-          td = link_to book_path(book), data: {no_turbolink: true}, class: "red", method: :delete,
+          td
+            button.btn.btn-secondary = link_to "edit", edit_book_path(book.path)
+          td
+            button.btn.btn-danger = link_to book_path(book), data: {no_turbolink: true}, class: "red", method: :delete,
           data: { confirm: "このページを削除しますか？" }
             | Xoa

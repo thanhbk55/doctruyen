@@ -1,6 +1,15 @@
 .chapter-view
+
   .title
     p.book-name = @book.name
     p.chapter-name = "Chương #{@chapter.number}: #{@chapter.name}"
+    = select_tag "chapter_select",
+      options_for_select(@book.chapters.order_by({"number": "asc"}).map {|c| ["Chương: #{c.number}: #{c.name}", book_chapter_path(@book.path, c.number)]}, book_chapter_path(@book.path, @chapter.number)),
+      :onchange => "document.location.href=this.value",
+      :class => "form-control"
+    p.break &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;
   .content
     = @chapter.content
+  .control-button
+    = link_to "▲", book_chapter_path(@book.path, @chapter.number.to_i - 1), class: "btn btn-outline-primary scroll-btn top"
+    = link_to "▼", book_chapter_path(@book.path, @chapter.number.to_i + 1), class: "btn btn-outline-primary scroll-btn bottom"
