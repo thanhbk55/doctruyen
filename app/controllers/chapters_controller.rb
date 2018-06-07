@@ -1,9 +1,24 @@
 class ChaptersController < ApplicationController
   before_action :set_book
-  before_action :set_chapter, only: [:show, :edit, :update]
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   def index
     @chapters = @book.chapters
+  end
+
+  def new
+    @chapter = Chapter.new
+  end
+
+  def create
+    @chapter = Chapter.new chapter_params
+    @chapter.book = @book
+    if @chapter.save
+      flash[:success] = 'Đã thêm chương mới'
+      redirect_to book_chapters_path(@book)
+    else
+      render :new, errors: @chapter.errors
+    end
   end
 
   def show
@@ -21,13 +36,22 @@ class ChaptersController < ApplicationController
     end
   end
 
+  def destroy
+    if @chapter.destroy
+      flash[:danger] = 'Đã xoá chương'
+      redirect_to book_chapters_path(@book)
+    else
+      render :new, errors: @chapter.errors
+    end
+  end
+
   private
   def chapter_params
     params.require(:chapter).permit(:name, :number, :content)
   end
 
   def set_book
-    @book = Book.where(id: params[:book_id]).first
+    @book = Book.or({id: params[:book_id]}, {path: params[:book_id]}).first
     raise ActionController::RoutingError.new "Not Found." unless @book
   end
 

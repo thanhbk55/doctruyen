@@ -1,4 +1,19 @@
-h1 = @book.name
-- @chapters.each do |chapter|
-  = link_to chapter.name, book_chapter_path(@book, chapter)
-  = link_to "edit", edit_book_chapter_path(@book, chapter)
+.chapter-index
+  h1 = @book.name
+  a href="#{new_book_chapter_path(@book)}"
+    button.btn.btn-primary Mới
+  - flash.each do |key, value|
+    div*{class: "alert alert-#{key} fade in alert-dismissible"}
+      a.close data-dismiss="alert" aria-label="close" &times;
+      = value
+  table
+    tbody
+      - @chapters.each do |chapter|
+        tr
+          td
+            a href="#{book_chapter_path(@book.path, chapter.number)}"
+              = "Chương #{chapter.number}: #{chapter.name}"
+          td = link_to "edit", edit_book_chapter_path(@book.path, chapter.number)
+          td = link_to book_chapter_path(@book, chapter), data: {no_turbolink: true}, class: "red", method: :delete,
+          data: { confirm: "このページを削除しますか？" }
+            | Xoa

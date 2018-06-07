@@ -1,6 +1,7 @@
-// Place all the styles related to the Chapters controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.chapter-index {
+  padding: 50px 400px;
+}
+
 .chapter-edit {
   padding: 50px 400px;
 }
@@ -25,6 +26,10 @@
   }
 }
 @media (max-width: 767px) {
+  .chapter-edit {
+    padding: 10px 30px;
+  }
+
   .chapter-view {
     padding: 10px 30px;
 

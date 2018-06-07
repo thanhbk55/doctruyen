@@ -1,0 +1,11 @@
+javascript:
+  console.log("aaa")
+.chapter-edit
+  - flash.each do |key, value|
+    div*{class: "alert alert-#{key} fade in alert-dismissible"}
+      a.close data-dismiss="alert" aria-label="close" &times;
+      = value
+  = form_for @book, url: book_path do |f|
+    label for="name" Tên Sách
+    = f.text_field :name, class: "form-control"
+    = f.submit "Cập nhật", class: "btn btn-primary btn-default"
