@@ -1,0 +1,13 @@
+.chapter-edit
+  - flash.each do |key, value|
+    div*{class: "alert alert-#{key} fade in alert-dismissible"}
+      a.close data-dismiss="alert" aria-label="close" &times;
+      = value
+  = form_for @chapter, url: book_chapter_path do |f|
+    label for="chapter_name" Tên Chương
+    = f.text_field :name, class: "form-control"
+    label for="chapter_number" Số
+    = f.text_field :number, class: "form-control"
+    label for="chapter_content" Nội dung
+    = f.text_area :content, class: "form-control", rows: "30"
+    = f.submit "Cập nhật", class: "btn btn-primary btn-default"

@@ -1,0 +1,14 @@
+// Place all the styles related to the Chapters controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.chapter-edit {
+  padding: 50px 400px;
+}
+
+.chapter-view {
+  padding: 50px 200px;
+  .content {
+    white-space: pre-line;
+    font-size: 25px;
+  }
+}

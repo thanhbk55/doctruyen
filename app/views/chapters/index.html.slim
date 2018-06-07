@@ -1,0 +1,4 @@
+h1 = @book.name
+- @chapters.each do |chapter|
+  = link_to chapter.name, book_chapter_path(@book, chapter)
+  = link_to "edit", edit_book_chapter_path(@book, chapter)
