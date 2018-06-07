@@ -7,8 +7,29 @@
 
 .chapter-view {
   padding: 50px 200px;
+  font-family: timesnewroman;
+  .title {
+    text-align: center;
+    font-size: 20px;
+    .book-name {
+      color: red;
+      font-weight: bold;
+    }
+    .chapter-name {
+      color: #b35900;
+    }
+  }
   .content {
     white-space: pre-line;
     font-size: 25px;
+  }
+}
+@media (max-width: 767px) {
+  .chapter-view {
+    padding: 10px 30px;
+
+    .content {
+      text-align: justify;
+    }
   }
 }

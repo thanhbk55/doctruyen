@@ -1,4 +1,6 @@
 .chapter-view
-  h1.title = "#{@chapter.name}"
+  .title
+    p.book-name = @book.name
+    p.chapter-name = "Chương #{@chapter.number}: #{@chapter.name}"
   .content
     = @chapter.content

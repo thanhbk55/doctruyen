@@ -32,7 +32,7 @@ class ChaptersController < ApplicationController
   end
 
   def set_chapter
-    @chapter = Chapter.where(id: params[:id]).first
+    @chapter = Chapter.or({id: params[:id]}, {number: params[:id]}).first
     raise ActionController::RoutingError.new "Not Found." unless @chapter
   end
 end
