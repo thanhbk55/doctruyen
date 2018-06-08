@@ -9,7 +9,7 @@
     h3 CHƯƠNG MỚI
     table
       tbody
-        - @chapters.order_by({"number": "desc"}).limit(5).each do |chapter|
+        - @book.chapters.order_by({"number": "desc"}).limit(5).each do |chapter|
           tr
             td
               a href="#{book_chapter_path(@book.path, chapter.number)}"
@@ -25,5 +25,7 @@
                 = "Chương #{chapter.number}: #{chapter.name}"
             td = link_to "edit", edit_book_chapter_path(@book.path, chapter.number), class: "btn btn-info"
             td = link_to book_chapter_path(@book, chapter), data: {no_turbolink: true}, class: "btn btn-danger", method: :delete,
-            data: { confirm: "このページを削除しますか？" }
-              | Xoa
+            data: { confirm: "Chắc chắn xoá không?" }
+              | Xoá
+
+    = paginate @chapters

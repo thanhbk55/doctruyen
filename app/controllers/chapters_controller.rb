@@ -3,7 +3,8 @@ class ChaptersController < ApplicationController
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   def index
-    @chapters = @book.chapters
+    @page = params["page"] || 1
+    @chapters = @book.chapters.page(@page).per(10)
   end
 
   def new
