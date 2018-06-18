@@ -23,6 +23,17 @@ class ChaptersController < ApplicationController
   end
 
   def show
+    unless @chapter.present?
+      chapter_number = params[:id].to_i
+      if params[:next].present?
+        @chapter = @book.chapters.where(:number.gt => chapter_number).order_by({"number": "asc"}).first
+        @chapter = @book.chapters.where(number: chapter_number - 1).first unless @chapter.present?
+      end
+      if params[:prev].present?
+        @chapter = @book.chapters.where(:number.lte => chapter_number).order_by({"number": "desc"}).first
+        @chapter = @book.chapters.where(number: chapter_number + 1).first unless @chapter.present?
+      end
+    end
   end
 
   def edit
@@ -58,6 +69,5 @@ class ChaptersController < ApplicationController
 
   def set_chapter
     @chapter = Chapter.or({id: params[:id]}, {number: params[:id]}).first
-    raise ActionController::RoutingError.new "Not Found." unless @chapter
   end
 end

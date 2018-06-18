@@ -3,7 +3,7 @@ class Chapter
   include Mongoid::Timestamps
 
   field :name
-  field :number
+  field :number, type: Integer
   field :content
   belongs_to :book
 end

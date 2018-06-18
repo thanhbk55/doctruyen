@@ -11,5 +11,5 @@
   .content
     = @chapter.content
   .control-button
-    = link_to "▲", book_chapter_path(@book.path, @chapter.number.to_i - 1), class: "btn btn-outline-primary scroll-btn top"
-    = link_to "▼", book_chapter_path(@book.path, @chapter.number.to_i + 1), class: "btn btn-outline-primary scroll-btn bottom"
+    = link_to "▲", book_chapter_path(@book.path, @chapter.number.to_i - 1, prev: true), class: "btn btn-outline-primary scroll-btn top"
+    = link_to "▼", book_chapter_path(@book.path, @chapter.number.to_i + 1, next: true), class: "btn btn-outline-primary scroll-btn bottom"
